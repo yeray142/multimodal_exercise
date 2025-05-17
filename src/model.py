@@ -26,8 +26,6 @@ class MultimodalAgeClassifier(nn.Module):
 		)
 
 	def forward(self, image, audio, text):
-		print(image.shape, audio.shape)
-
 		# Ensure all inputs are tensors
 		if not isinstance(image, torch.Tensor):
 			print("Image tensor is not a torch.Tensor")

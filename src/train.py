@@ -14,8 +14,7 @@ from src.dataset import collate_fn
 
 
 def train_model(model, train_loader, val_loader, num_epochs=10, learning_rate=0.001):
-	# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-	device = 'cpu'
+	device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 	model = model.to(device)
 
 	criterion = nn.CrossEntropyLoss()
@@ -105,7 +104,8 @@ def main():
 		data_dir=args.data_dir,
 		annotations_file=args.val_annotations,
 		image_transform=image_transform,
-		audio_transform=None  # No transform needed for wav2vec
+		audio_transform=None,  # No transform needed for wav2vec
+		split="valid"
 	)
 
 	train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True, num_workers=1, collate_fn=collate_fn)

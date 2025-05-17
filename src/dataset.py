@@ -57,7 +57,7 @@ class MultimodalDataset(Dataset):
 			'image': image,
 			'audio': waveform,
 			'text': transcription,
-			'label': torch.tensor(age_group, dtype=torch.long)
+			'label': torch.tensor(age_group - 1, dtype=torch.long)
 		}
 
 def collate_fn(batch):
